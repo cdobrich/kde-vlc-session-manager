@@ -23,6 +23,13 @@ kde-vlc-session-manager.py save
 kde-vlc-session-manager.py restore
 ```
 
+# Installation
+
+There are two ways to install the program.
+
+(1) The python script can be triggered by the KDE startup program assignment (typically done through the System Settings).
+(2) The shell script file _kde-vlc-session-manager.sh_ file needs to be enabled on the system load. TBD. (This feature is currently experimental and the shell script is not yet complete.) 
+
 ## Required Python Packages
 
 ### Requests
@@ -37,4 +44,3 @@ Video session information is stored in the user's home directory.
 
 ```$USER/.vlc_session```
 
-    

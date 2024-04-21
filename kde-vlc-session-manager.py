@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 
+# TODO convert error printing to logging and hide output by default
+# TODO verify restore with position code works
+
 import os
 import subprocess
 import sys
@@ -68,7 +71,7 @@ def get_video_info(pid):
         return session_info
 
     except dbus.exceptions.DBusException as e:
-        print(f"Error: {e}")
+        print(f"DBus Error: {e}")
         return None
 
 
@@ -79,7 +82,8 @@ def restore_session():
     with open(SESSION_FILE, "r") as session_file:
         for line in session_file:
             video, position = line.strip().split()
-            subprocess.Popen(["vlc", video, f"--start-time={position}"])
+            print(f"Opening {video} at time {position}")
+            subprocess.Popen(["vlc", f"--start-time={position}", video])
 
 
 def main():
