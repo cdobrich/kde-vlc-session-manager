@@ -2,6 +2,7 @@
 
 import os
 import subprocess
+import sys
 
 import dbus
 
@@ -81,7 +82,11 @@ def restore_session():
             subprocess.Popen(["vlc", video, f"--start-time={position}"])
 
 
-if __name__ == "__main__":
+def main():
+    if len(sys.argv) == 1:
+        print("Run with the '--help' or '-h' options to see details.")
+        return
+
     import argparse
 
     parser = argparse.ArgumentParser(description="Save and restore VLC session.")
@@ -92,3 +97,8 @@ if __name__ == "__main__":
         save_session()
     elif args.action == "restore":
         restore_session()
+
+
+if __name__ == "__main__":
+    main()
+
